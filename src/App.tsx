@@ -1,13 +1,16 @@
 import { useState } from "react";
-import Alert from "./components/Alert";
 import Button from "./components/Button";
-import ListGroup from "./components/ListGroup";
-import { BsFillCalendarWeekFill } from "react-icons/bs";
 
 function App() {
+  const [counter, setCounter] = useState(0);
+
   return (
     <div>
-      <BsFillCalendarWeekFill color="red" size={40}></BsFillCalendarWeekFill>
+      <Button color="primary" onClick={() => setCounter(counter + 1)}>
+        Click Me!
+      </Button>
+      <br />
+      {counter}
     </div>
   );
 }
