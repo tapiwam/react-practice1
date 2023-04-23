@@ -5,6 +5,7 @@ import ListGroup from "./components/ListGroup";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
+  let items = ["Dallas", "Houston", "Tampa"];
 
   return (
     <div>
@@ -15,6 +16,14 @@ function App() {
       <Button color="primary" onClick={() => setAlertVisible(true)}>
         Click Me
       </Button>
+
+      <hr />
+
+      <ListGroup
+        heading="Cities"
+        items={items}
+        onSelectItem={() => console.log("clicked")}
+      ></ListGroup>
     </div>
   );
 }
