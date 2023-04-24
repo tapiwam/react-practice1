@@ -1,34 +1,27 @@
 import { useState } from "react";
 import produce from "immer";
+import ListGroup from "./components/ListGroup";
+import NavBar from "./components/NavBar";
+import Cart from "./components/Cart";
 
 function App() {
-  const [bugs, setBugs] = useState([
-    { id: 1, title: "Bug 1", fixed: false },
-    { id: 2, title: "Bug 2", fixed: false },
-  ]);
+  const [cart, setCart] = useState(["Product1", "Product2"]);
 
   const handleClick = () => {
     // setting arrays in state also need new arrays
 
     // Update a value -> Map to find then spread the inner object with updates
     // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
-    setBugs(
-      produce((draft) => {
-        const bug = draft.find((bug) => bug.id === 1);
-        if (bug) bug.fixed = true;
-      })
-    );
+    setCart([...cart, "Produce3"]);
   };
 
   return (
     <div>
-      {bugs.map((bug) => (
-        <div key={bug.id}>
-          {bug.id} {bug.title} {bug.fixed ? "TRUE" : "FALSE"}
-        </div>
-      ))}
-      <br />
       <button onClick={handleClick}>Click Me</button>
+      <br />
+
+      <NavBar cartCount={cart.length}></NavBar>
+      <Cart cartItems={cart}></Cart>
     </div>
   );
 }
