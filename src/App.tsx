@@ -2,28 +2,24 @@ import { useState } from "react";
 import Like from "./components/Like";
 
 function App() {
-  const [person, setPerson] = useState({
-    firstName: "T",
-    lastName: "M",
-    address: {
-      city: "Dallas",
-      zipCode: 75126,
-    },
-  });
+  const [tags, setTags] = useState(["happy", "cheerful"]);
 
   const handleClick = () => {
-    // When spreading remember "it is shallow". Need to traverse nested objects
-    setPerson({
-      ...person,
-      firstName: "Tapiwa",
-      address: { ...person.address, zipCode: 75254 },
-    });
+    // setting arrays in state also need new arrays
+
+    // Add a tag
+    setTags([...tags, "Exciting"]);
+
+    // remove a tag
+    setTags(tags.filter((tag) => tag != "happy"));
+
+    // Update a flag
+    setTags(tags.map((tag) => (tag === "happy" ? "happiness" : tag)));
   };
 
   return (
     <div>
-      {person.firstName} {person.lastName} <br />
-      {person.address.city} {person.address.zipCode}
+      {tags}
       <br />
       <button onClick={handleClick}>Click Me</button>
     </div>
