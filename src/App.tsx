@@ -2,24 +2,25 @@ import { useState } from "react";
 import Like from "./components/Like";
 
 function App() {
-  const [tags, setTags] = useState(["happy", "cheerful"]);
+  const [bugs, setBugs] = useState([
+    { id: 1, title: "Bug 1", fixed: false },
+    { id: 2, title: "Bug 2", fixed: false },
+  ]);
 
   const handleClick = () => {
     // setting arrays in state also need new arrays
 
-    // Add a tag
-    setTags([...tags, "Exciting"]);
-
-    // remove a tag
-    setTags(tags.filter((tag) => tag != "happy"));
-
-    // Update a flag
-    setTags(tags.map((tag) => (tag === "happy" ? "happiness" : tag)));
+    // Update a value -> Map to find then spread the inner object with updates
+    setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
   };
 
   return (
     <div>
-      {tags}
+      {bugs.map((bug) => (
+        <div key={bug.id}>
+          {bug.id} {bug.title} {bug.fixed ? "TRUE" : "FALSE"}
+        </div>
+      ))}
       <br />
       <button onClick={handleClick}>Click Me</button>
     </div>
