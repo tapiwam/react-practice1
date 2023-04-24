@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Like from "./components/Like";
+import produce from "immer";
 
 function App() {
   const [bugs, setBugs] = useState([
@@ -11,7 +11,13 @@ function App() {
     // setting arrays in state also need new arrays
 
     // Update a value -> Map to find then spread the inner object with updates
-    setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
+    setBugs(
+      produce((draft) => {
+        const bug = draft.find((bug) => bug.id === 1);
+        if (bug) bug.fixed = true;
+      })
+    );
   };
 
   return (
