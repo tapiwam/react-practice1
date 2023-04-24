@@ -15,13 +15,17 @@ function App() {
     setCart([...cart, "Produce3"]);
   };
 
+  const handleClearCart = () => {
+    setCart([]);
+  };
+
   return (
     <div>
-      <button onClick={handleClick}>Click Me</button>
+      <button onClick={handleClick}>Add To Cart</button>
       <br />
 
       <NavBar cartCount={cart.length}></NavBar>
-      <Cart cartItems={cart}></Cart>
+      <Cart cartItems={cart} onClear={handleClearCart}></Cart>
     </div>
   );
 }
