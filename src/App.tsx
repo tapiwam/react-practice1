@@ -5,27 +5,82 @@ import NavBar from "./components/NavBar";
 import Cart from "./components/Cart";
 
 function App() {
-  const [cart, setCart] = useState(["Product1", "Product2"]);
+  // Excercise 1
+  const [game, setGame] = useState({
+    id: 1,
+    player: {
+      name: "John",
+    },
+  });
 
-  const handleClick = () => {
-    // setting arrays in state also need new arrays
-
-    // Update a value -> Map to find then spread the inner object with updates
-    // setBugs(bugs.map((bug) => (bug.id === 1 ? { ...bug, fixed: true } : bug)));
-    setCart([...cart, "Produce3"]);
+  const handleClick1 = () => {
+    setGame({ ...game, player: { ...game.player, name: "Bob" } });
   };
 
-  const handleClearCart = () => {
-    setCart([]);
+  // Excercise 2 - add pizza topping
+
+  const [pizza, setPizza] = useState({
+    name: "Spicy Pepperonni",
+    toppings: ["Mushrooms"],
+  });
+
+  const handlePizzaToppings = () => {
+    setPizza({
+      ...pizza,
+      toppings: [...pizza.toppings, "Pepperonni"],
+    });
   };
 
+  // Excercise 3 - Update cart
+
+  const [cart, setCart] = useState({
+    discount: 0.1,
+    items: [
+      { id: 1, title: "Product 1", quantity: 1 },
+      { id: 2, title: "Product 2", quantity: 1 },
+    ],
+  });
+
+  const handleCartUpdate = () => {
+    setCart({
+      ...cart,
+      items: cart.items.map((item) =>
+        item.id === 1 ? { ...item, quantity: item.quantity + 1 } : item
+      ),
+    });
+  };
+
+  // Render
   return (
     <div>
-      <button onClick={handleClick}>Add To Cart</button>
+      <button onClick={handleClick1}>Update Name</button>
       <br />
-
-      <NavBar cartCount={cart.length}></NavBar>
-      <Cart cartItems={cart} onClear={handleClearCart}></Cart>
+      <h3>
+        {game.id} - {game.player.name}
+      </h3>
+      <hr />
+      <button onClick={handlePizzaToppings}>Add Topping</button>
+      <br />
+      <h3>Pizza Name : {pizza.name}</h3>
+      Toppings
+      <ul>
+        {pizza.toppings.map((topping, index) => (
+          <li key={index}>{topping}</li>
+        ))}
+      </ul>
+      <hr />
+      <button onClick={handleCartUpdate}>Update Cart</button>
+      <br />
+      <h3>Cart Discount : {cart.discount}</h3>
+      Cart
+      <ul>
+        {cart.items.map((item, index) => (
+          <li key={index}>
+            {item.id} - {item.title} - {item.quantity}
+          </li>
+        ))}
+      </ul>
+      <hr />
     </div>
   );
 }
