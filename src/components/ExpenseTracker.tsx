@@ -23,6 +23,7 @@ const ExpenseTracker = ({ items, onSubmitItem }: Props) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors, isValid },
   } = useForm<FormData>();
 
@@ -30,6 +31,8 @@ const ExpenseTracker = ({ items, onSubmitItem }: Props) => {
     if (isValid) {
       onSubmitItem(data as Expense);
     }
+
+    reset();
   };
 
   return (
@@ -54,6 +57,7 @@ const ExpenseTracker = ({ items, onSubmitItem }: Props) => {
           {...register("amount")}
           id="amount"
           type="number"
+          step="any"
           className="form-control"
         />
       </div>

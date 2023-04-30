@@ -4,10 +4,16 @@ import ExpenseTracker from "./components/ExpenseTracker";
 import Expense from "./model/Expense";
 
 function App() {
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
 
   const onSubmitItem = (data: Expense) => {
     console.log(data);
+
+    setExpenses([...expenses, data]);
+  };
+
+  const onDeleteItem = (index: number, item: Expense) => {
+    setExpenses(expenses.filter((e, index) => e !== item));
   };
 
   return (
@@ -17,7 +23,7 @@ function App() {
         onSubmitItem={onSubmitItem}
       ></ExpenseTracker>
 
-      <ExpenseList items={expenses}></ExpenseList>
+      <ExpenseList items={expenses} onDeleteItem={onDeleteItem}></ExpenseList>
     </div>
   );
 }
