@@ -3,7 +3,7 @@ import ExpandaleText from "./components/ExpandaleText";
 function App() {
   return (
     <div>
-      <ExpandaleText maxChars={10}>
+      <ExpandaleText maxChars={100}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed in ex vitae
         velit efficitur lacinia id ac sem. Quisque et rhoncus nisi. Nullam quis
         feugiat lorem. Nullam sed fermentum arcu. Donec tempor mattis nunc, in

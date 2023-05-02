@@ -21,7 +21,9 @@ const ExpandaleText = ({ children, maxChars }: Props) => {
     <div>
       {expanded === true ? children : shortText}
       <br />
-      <button onClick={handleClick}>{expanded ? "Collapse" : "Expand"}</button>
+      <button onClick={handleClick} hidden={children.length <= maxChars}>
+        {expanded ? "Collapse" : "Expand"}
+      </button>
     </div>
   );
 };
