@@ -1,7 +1,7 @@
 import { useState } from "react";
-import ExpenseList from "./components/ExpenseList";
-import ExpenseTracker from "./components/ExpenseTracker";
-import Expense from "./model/Expense";
+import ExpenseList from "./expense-tracker/components/ExpenseList";
+import ExpenseTracker from "./expense-tracker/components/ExpenseTracker";
+import Expense from "./expense-tracker/model/Expense";
 
 function App() {
   const [expenses, setExpenses] = useState<Expense[]>([]);

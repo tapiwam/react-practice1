@@ -34,6 +34,8 @@ const ExpenseList = ({ items, onDeleteItem }: Props) => {
     setSelected(event.target.value);
   };
 
+  if (items.length === 0) return null;
+
   return (
     <div>
       <form>
@@ -91,7 +93,8 @@ const ExpenseList = ({ items, onDeleteItem }: Props) => {
               </td>
             </tr>
           ))}
-
+        </tbody>
+        <tfoot>
           <tr>
             <td>Total</td>
             <td>
@@ -107,7 +110,7 @@ const ExpenseList = ({ items, onDeleteItem }: Props) => {
             <td></td>
             <td></td>
           </tr>
-        </tbody>
+        </tfoot>
       </table>
     </div>
   );
