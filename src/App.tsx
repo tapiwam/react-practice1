@@ -1,24 +1,22 @@
 import { useEffect, useRef, useState } from "react";
-import ExpenseList from "./expense-tracker/components/ExpenseList";
-import ExpenseTracker from "./expense-tracker/components/ExpenseTracker";
-import Expense from "./expense-tracker/model/Expense";
+import ProductList from "./components/ProductList";
 
 function App() {
-  const ref = useRef<HTMLInputElement>(null);
-
-  // After render
-  useEffect(() => {
-    // Side effect
-    if (ref.current) ref.current.focus();
-  });
-
-  useEffect(() => {
-    document.title = "My App";
-  });
+  const [category, setCategory] = useState("");
 
   return (
     <div>
-      <input ref={ref} type="text" className="form-control" />
+      <select
+        name=""
+        id=""
+        className="form-select"
+        onChange={(event) => setCategory(event?.target.value)}
+      >
+        <option value=""></option>
+        <option value="Clothing">Clothing</option>
+        <option value="Household">Household</option>
+      </select>
+      <ProductList category={category} />
     </div>
   );
 }
