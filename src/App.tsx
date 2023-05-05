@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 // https://jsonplaceholder.typicode.com/
 
@@ -13,17 +13,18 @@ function App() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get<User[]>("https://jsonplaceholder.typicode.com/usersx")
-      .then((res) => {
+    const fetchUsers = async () => {
+      try {
+        const res = await axios.get<User[]>(
+          "https://jsonplaceholder.typicode.com/usersx"
+        );
+
         setUsers(res.data);
         setError("");
-      })
-      .catch((err) => {
-        console.log(err);
-        setError(err.message);
-        setUsers([]);
-      });
+      } catch (err) {
+        setError((err as AxiosError).message);
+      }
+    };
   }, []);
 
   return (
